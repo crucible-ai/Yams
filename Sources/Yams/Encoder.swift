@@ -98,6 +98,11 @@ private class _Encoder: Swift.Encoder {
         get { return node.sequence ?? [] }
         set { node.sequence = newValue }
     }
+    
+    /// create a new Node with the requested tag type (use when working with advanced custom tags)
+    func set(tag: Tag) {
+        self.node = Node([], tag, mappingStyle)
+    }
 
     /// create a new `_ReferencingEncoder` instance as `key` inheriting `userInfo`
     func encoder(for key: CodingKey) -> _ReferencingEncoder {
@@ -260,6 +265,15 @@ struct _YAMLCodingKey: CodingKey { // swiftlint:disable:this type_name
     }
 
     static let `super` = _YAMLCodingKey(stringValue: "super")!
+}
+
+// MARK: Tag Encoding
+
+extension Encoder {
+    /// Expose customization of `Tag`  to `Encodable` conforming classes
+    public func set(tag: Tag) {
+        (self as? _Encoder)?.set(tag: tag)
+    }
 }
 
 // MARK: -
