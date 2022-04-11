@@ -17,6 +17,8 @@ public final class Tag {
             self.rawValue = rawValue
         }
     }
+    /// Allow public access of Tag name
+    public var name: Name
 
     /// Shorthand accessor for `Tag(.implicit)`.
     public static var implicit: Tag {
@@ -51,7 +53,6 @@ public final class Tag {
 
     // internal
     let constructor: Constructor
-    var name: Name
 
     fileprivate func resolved<T>(with value: T) -> Tag where T: TagResolvable {
         if name == .implicit {
