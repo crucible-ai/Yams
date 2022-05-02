@@ -184,7 +184,7 @@ extension Float: ScalarRepresentable {
 private func numberFormatter(with significantDigits: Int) -> NumberFormatter {
     let formatter = NumberFormatter()
     formatter.locale = Locale(identifier: "en_US")
-    formatter.numberStyle = .scientific
+    formatter.numberStyle = .decimal
     formatter.usesSignificantDigits = true
     formatter.maximumSignificantDigits = significantDigits
     formatter.positiveInfinitySymbol = ".inf"
